@@ -1,0 +1,86 @@
+
+<ion-header>
+
+  <ion-navbar text-center>
+
+    <ion-buttons left>
+
+      <button ion-button
+              (click)="cerrar()">
+            Cerrar
+      </button>
+
+    </ion-buttons>
+
+
+    <ion-title >Crear Post</ion-title>
+
+    <ion-buttons end>
+
+      <button ion-button
+              (click)="cerrar()">
+            Subir
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Titulo</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <img src="http://cdn.colombia.com/sdi/2016/12/03/instagram-paulina-vega-enamora-a-sus-seguidores-cantando-529161.jpg" alt="">
+      </ion-item>
+
+    </ion-list>
+
+    <ion-grid>
+
+      <ion-row>
+
+        <ion-col>
+
+          <button ion-button
+                  block
+                  icon-left
+                  (click)="SeleccionarFoto()">
+            <ion-icon name="photos"></ion-icon>
+
+            Seleccionar
+          </button>
+
+        </ion-col> 
+        
+        <ion-col>
+
+          <button ion-button
+                  block
+                  icon-left
+                  (click)="abrirCamara()">
+            <ion-icon name="camera"></ion-icon>
+
+            Camera
+          </button>
+
+        </ion-col>
+
+      </ion-row>
+     
+
+    </ion-grid>
+
+
+
+
+  
+
+</ion-content>

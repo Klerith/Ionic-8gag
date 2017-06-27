@@ -6,18 +6,34 @@
       8Gag
     </ion-title>
 
+    <ion-buttons end>
+
+      <button ion-button
+              *ngIf="displayName == null"
+              (click)="ingresar()">
+        Ingresar
+      </button>
+
+      <button ion-button
+              *ngIf="displayName != null"              
+              (click)="salir()">
+        Salir
+      </button>
+
+    </ion-buttons>
+
   </ion-navbar>
 
 </ion-header>
 
 <ion-content >
 
-  <ion-card *ngFor="let post of posts | async">
+  <ion-card *ngFor="let post of _cas?.imagenes ">
 
-    <img [src]="post.img">
+    <img [src]="post?.img">
 
     <ion-card-content>
-      <ion-card-title>{{ post.titulo }}</ion-card-title>
+      <ion-card-title>{{ post?.titulo }}</ion-card-title>
     </ion-card-content>
 
     <ion-row>
@@ -28,7 +44,8 @@
                 icon-left 
                 clear 
                 small 
-                color="primary">
+                color="primary"
+                (click)="compartirPost(post?.titulo, post?.img)">
           <ion-icon name="share-alt"></ion-icon>
           Compartir
         </button>
@@ -42,13 +59,18 @@
 
 
 
-  <ion-fab bottom right >
+  <ion-fab bottom right
+           *ngIf="displayName != null" >
     <button ion-fab 
             color="danger"
             (click)="mostrarModal()">
             <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
+
+<ion-infinite-scroll (ionInfinite)="cargarPostSiguientes($event)" [enabled]="hayMas">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
 
   
 </ion-content>

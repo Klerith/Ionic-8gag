@@ -11,8 +11,23 @@ import { SubirPage } from '../pages/subir/subir';
 // Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { firebaseConfig } from '../config/firebase.config';
+
+// Pipes
+import { PlaceholderPipe } from '../pipes/placeholder/placeholder';
+
+// Plugins
+import { Camera } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
+
+// Servicios
+import { CargaArchivosService } from '../providers/carga-archivos/carga-archivos';
+
+// Facebook
+import { Facebook } from '@ionic-native/facebook';
+
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 
 
@@ -20,7 +35,8 @@ import { firebaseConfig } from '../config/firebase.config';
   declarations: [
     MyApp,
     HomePage,
-    SubirPage
+    SubirPage,
+    PlaceholderPipe
   ],
   imports: [
     BrowserModule,
@@ -38,7 +54,13 @@ import { firebaseConfig } from '../config/firebase.config';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Camera,
+    ImagePicker,
+    AngularFireAuth,  
+    Facebook,  
+    SocialSharing,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CargaArchivosService
   ]
 })
 export class AppModule {}

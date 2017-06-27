@@ -13,13 +13,14 @@
     </ion-buttons>
 
 
-    <ion-title >Crear Post</ion-title>
+    <ion-title >{{ titulo | placeholder:'Crear Post'}}</ion-title>
 
     <ion-buttons end>
 
       <button ion-button
-              (click)="cerrar()">
-            Subir
+              [disabled]=" img.length < 2 || titulo.length < 2 "
+              (click)="crearPost()">
+            Crear Post
       </button>
 
     </ion-buttons>
@@ -34,11 +35,11 @@
 
       <ion-item>
         <ion-label floating>Titulo</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="titulo "></ion-input>
       </ion-item>
 
-      <ion-item>
-        <img src="http://cdn.colombia.com/sdi/2016/12/03/instagram-paulina-vega-enamora-a-sus-seguidores-cantando-529161.jpg" alt="">
+      <ion-item *ngIf="imgPreview">
+        <img [src]="imgPreview" alt="">
       </ion-item>
 
     </ion-list>

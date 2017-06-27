@@ -101,7 +101,7 @@ export class HomePage {
     loader.present();
 
     // Check if sharing via email is supported
-    this.socialSharing.shareViaFacebook(post.titulo, post.img).then(( success ) => {
+    this.socialSharing.shareViaFacebook(post.titulo, post.img, "null" ).then(( success ) => {
       // Sharing via email is possible
       loader.dismiss()  
       this.mostrarToast('Muy okey, ya esta tu post' + success)

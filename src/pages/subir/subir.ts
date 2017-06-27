@@ -123,7 +123,7 @@ export class SubirPage {
 
         console.log( 'Imagen seleccionada: ', img )
 
-        this.imgPreview = 'data:image/jpeg;base64,' + img;
+        this.imgPreview = img;
         this.img = img
         break
 

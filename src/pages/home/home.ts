@@ -85,10 +85,10 @@ export class HomePage {
 
   }
 
-  compartirPost(message: string, image: string){
+  compartirPost( post: any ){
 
-    console.log('Mensaje' + message)
-    console.log('image' + image)
+    console.log('Mensaje: ' + post.titulo)
+    console.log('image: ' + post.img)
 
     if ( !this.platform.is('cordova')){
       this.mostrarToast('Estamos en el compu')
@@ -97,21 +97,28 @@ export class HomePage {
 
     let loader = this.loadingCtrl.create({
       content: "Subiendo tu post...",
-    });
+    }); 
     loader.present();
 
-    this.socialSharing.shareViaFacebook(message, image, "undefine" ).then(() => {
+    // Check if sharing via email is supported
+    this.socialSharing.shareViaFacebook(post.titulo, post.img).then(( success ) => {
+      // Sharing via email is possible
       loader.dismiss()  
-      this.mostrarToast('Muy okey, ya esta tu post')
-          // Success!
-    }).catch((err) => {
-        
+      this.mostrarToast('Muy okey, ya esta tu post' + success)
+      console.log('Post creado: ' + success )
+
+    }).catch(( error ) => {
+      // Sharing via email is not possible
         loader.dismiss()
 
-        this.mostrarToast('Error al cargar' + err)
+        this.mostrarToast('Error al cargar' + error)
 
-        console.error('Error al cargar'+ JSON.stringify(err))
+        console.error('Error al cargar'+ JSON.stringify(error))
     });
+
+
+
+  
 
   }
 
